@@ -70,8 +70,10 @@ namespace Quest
 
 
             Robe discription = new Robe();
-            //  
+            
             discription.Length = 30;
+            discription.Addcolor("red");
+            discription.Addcolor("gold");
 
             Console.Write($"What is your name adventurer? ");
             string adventurename = Console.ReadLine();
