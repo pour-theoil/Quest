@@ -9,7 +9,7 @@ namespace Quest
 {
     class Program
     {
-        static void Adventuregame()
+        static void Main(string[] args)
         {
             Console.Clear();
             // Create a few challenges for our Adventurer's quest
@@ -67,7 +67,7 @@ namespace Quest
             //  If an Adventurer has an Awesomeness less than the min, they are terrible
             int minAwesomeness = 0;
             int maxAwesomeness = 100;
-            
+
 
             Robe discription = new Robe();
             discription.Length = 30;
@@ -80,15 +80,19 @@ namespace Quest
             coolhat.ShininessLevel = shine;
             string shiny = coolhat.ShininessDescription();
 
-
+            Console.WriteLine("");
+            Console.WriteLine("");
             Console.Write($"What is your name adventurer? ");
             string adventurename = Console.ReadLine();
             // Make a new "Adventurer" object using the "Adventurer" class
             Adventurer theAdventurer = new Adventurer(adventurename, discription, shiny);
-            
-            
+
+
             Prize prizepackage = new Prize("A puppy");
             theAdventurer.GetDescription();
+
+
+
 
             int randomint()
             {
@@ -97,60 +101,73 @@ namespace Quest
             }
             // A list of challenges for the Adventurer to complete
             // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
-            Dictionary<Challenge, int> challenges = new Dictionary<Challenge, int>();
-            challenges.Add(twoPlusTwo, randomint());
-            challenges.Add(theAnswer, randomint());
-            challenges.Add(whatSecond, randomint());
-            challenges.Add(favoriteBeatle, randomint());
-            challenges.Add(coffee, randomint());
-            challenges.Add(nss, randomint());
-            challenges.Add(ocean, randomint());
-
-            var sorted = from pair in challenges
-                         orderby pair.Value descending
-                         select pair;
-            int i = 0;
-            // Loop through all the challenges and subject the Adventurer to them
-            foreach (var challenge in sorted)
+            while (true)
             {
-                if (i < 4)
+                //Set correct answers
+                theAdventurer.Correct = 0;
+                Console.WriteLine("");
+                Console.WriteLine($"Your current Awesomeness level is {theAdventurer.Awesomeness}");
+                Console.WriteLine("");
+
+
+                //set random questions
+                Dictionary<Challenge, int> challenges = new Dictionary<Challenge, int>();
+                challenges.Add(twoPlusTwo, randomint());
+                challenges.Add(theAnswer, randomint());
+                challenges.Add(whatSecond, randomint());
+                challenges.Add(favoriteBeatle, randomint());
+                challenges.Add(coffee, randomint());
+                challenges.Add(nss, randomint());
+                challenges.Add(ocean, randomint());
+
+                var sorted = from pair in challenges
+                             orderby pair.Value descending
+                             select pair;
+                int i = 0;
+                // Loop through all the challenges and subject the Adventurer to them
+                foreach (var challenge in sorted)
                 {
+                    if (i < 4)
+                    {
 
-                    challenge.Key.RunChallenge(theAdventurer);
+                        challenge.Key.RunChallenge(theAdventurer);
+                    }
+                    i++;
                 }
-                i++;
-            }
 
-            // This code examines how Awesome the Adventurer is after completing the challenges
-            // And praises or humiliates them accordingly
-            if (theAdventurer.Awesomeness >= maxAwesomeness)
-            {
-                Console.WriteLine("YOU DID IT! You are truly awesome!");
-            }
-            else if (theAdventurer.Awesomeness <= minAwesomeness)
-            {
-                Console.WriteLine("Get out of my sight. Your lack of awesomeness offends me!");
-            }
-            else
-            {
-                Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
-            }
-            prizepackage.Showprize(theAdventurer);
+                // This code examines how Awesome the Adventurer is after completing the challenges
+                // And praises or humiliates them accordingly
+                if (theAdventurer.Awesomeness >= maxAwesomeness)
+                {
+                    Console.WriteLine("YOU DID IT! You are truly awesome!");
+                }
+                else if (theAdventurer.Awesomeness <= minAwesomeness)
+                {
+                    Console.WriteLine("Get out of my sight. Your lack of awesomeness offends me!");
+                }
+                else
+                {
+                    Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
+                }
+                prizepackage.Showprize(theAdventurer);
+
+                Console.WriteLine("");
+                Console.WriteLine($"You were able to complete {theAdventurer.Correct} quests!");
+                Console.WriteLine("");
+
+                theAdventurer.Awesomeness = 50 + theAdventurer.Correct * 10;
+
+                Console.WriteLine("This game is fun would you like to play again?!?");
+                Console.Write("Y or N: ");
+                string answer = Console.ReadLine().ToLower();
+                if (answer == "n")
+                {
+                    break;
+                }
 
 
-        }
-        static void Main(string[] args)
-        {
-            Adventuregame();
 
-            Console.WriteLine("This game is fun would you like to play again?!?");
-            Console.Write("Y or N: ");
-            string answer = Console.ReadLine().ToLower();
-            if (answer == "y")
-            {
-                Adventuregame();
             }
-
         }
     }
 }
