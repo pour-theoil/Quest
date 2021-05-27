@@ -16,6 +16,8 @@ namespace Quest
 
         public Robe ColorfulRobe { get; }
 
+        public int Correct {get; set;}
+
         public String Coolhat { get;}
         
         // A constructor to make a new Adventurer object with a given name
@@ -25,6 +27,7 @@ namespace Quest
             Awesomeness = 50;
             ColorfulRobe = robe;
             Coolhat = hat;
+            Correct = 0;
         }
 
 
