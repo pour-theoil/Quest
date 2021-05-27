@@ -52,7 +52,12 @@ namespace Quest
         }
 
         public void GetDescription(){
-            Console.Write( $"The adventurer {Name} is wearing a {ColorfulRobe.Colors} robe that is {ColorfulRobe.Length} inches long.");
+            Console.Write( $"The adventurer {Name} is wearing a");
+            foreach(string color in ColorfulRobe.Colors){
+                Console.Write($" {color}, ");
+            
+            }
+            Console.WriteLine( $"robe that is {ColorfulRobe.Length} inches long.");
         }
     }
 }

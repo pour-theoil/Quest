@@ -8,5 +8,14 @@ namespace Quest
 
         public int Length { get; set; }
 
+        public void Addcolor(string color){
+            Colors.Add(color);
+        }
+
+        public Robe(){
+            Length= 0;
+            Colors = new List<string>();
+        }
+        
     }
 }
