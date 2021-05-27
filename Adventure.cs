@@ -15,13 +15,16 @@ namespace Quest
         public int Awesomeness { get; set; }
 
         public Robe ColorfulRobe { get; }
+
+        public String Coolhat { get;}
         
         // A constructor to make a new Adventurer object with a given name
-        public Adventurer(string name, Robe robe)
+        public Adventurer(string name, Robe robe, String hat)
         {
             Name = name;
             Awesomeness = 50;
             ColorfulRobe = robe;
+            Coolhat = hat;
         }
 
 
@@ -58,6 +61,7 @@ namespace Quest
             
             }
             Console.WriteLine( $"robe that is {ColorfulRobe.Length} inches long.");
+            Console.WriteLine($"Did I forget to mention that you are wearing a {Coolhat} shiny hat?");
         }
     }
 }
