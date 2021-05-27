@@ -57,7 +57,7 @@ namespace Quest
     4) Artic
 
 ", 4, 20);
-            
+
 
             // "Awesomeness" is like our Adventurer's current "score"
             // A higher Awesomeness is better
@@ -67,7 +67,7 @@ namespace Quest
             //  If an Adventurer has an Awesomeness less than the min, they are terrible
             int minAwesomeness = 0;
             int maxAwesomeness = 100;
-
+            
 
             Robe discription = new Robe();
             discription.Length = 30;
@@ -76,7 +76,7 @@ namespace Quest
 
             Hat coolhat = new Hat();
             Random hatish = new Random();
-            int shine = hatish.Next(1,11);
+            int shine = hatish.Next(1, 11);
             coolhat.ShininessLevel = shine;
             string shiny = coolhat.ShininessDescription();
 
@@ -85,7 +85,9 @@ namespace Quest
             string adventurename = Console.ReadLine();
             // Make a new "Adventurer" object using the "Adventurer" class
             Adventurer theAdventurer = new Adventurer(adventurename, discription, shiny);
-
+            
+            
+            Prize prizepackage = new Prize("A puppy");
             theAdventurer.GetDescription();
 
             int randomint()
@@ -105,16 +107,16 @@ namespace Quest
             challenges.Add(ocean, randomint());
 
             var sorted = from pair in challenges
-                 orderby pair.Value descending
-                 select pair;
-            int i =0;
+                         orderby pair.Value descending
+                         select pair;
+            int i = 0;
             // Loop through all the challenges and subject the Adventurer to them
             foreach (var challenge in sorted)
             {
                 if (i < 4)
                 {
 
-                challenge.Key.RunChallenge(theAdventurer);
+                    challenge.Key.RunChallenge(theAdventurer);
                 }
                 i++;
             }
@@ -133,9 +135,12 @@ namespace Quest
             {
                 Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
             }
+            prizepackage.Showprize(theAdventurer);
+
 
         }
-        static void Main(string[] args){
+        static void Main(string[] args)
+        {
             Adventuregame();
 
             Console.WriteLine("This game is fun would you like to play again?!?");
@@ -145,7 +150,7 @@ namespace Quest
             {
                 Adventuregame();
             }
-   
+
         }
     }
 }
