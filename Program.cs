@@ -70,15 +70,21 @@ namespace Quest
 
 
             Robe discription = new Robe();
-            
             discription.Length = 30;
             discription.Addcolor("red");
             discription.Addcolor("gold");
 
+            Hat coolhat = new Hat();
+            Random hatish = new Random();
+            int shine = hatish.Next(1,11);
+            coolhat.ShininessLevel = shine;
+            string shiny = coolhat.ShininessDescription();
+
+
             Console.Write($"What is your name adventurer? ");
             string adventurename = Console.ReadLine();
             // Make a new "Adventurer" object using the "Adventurer" class
-            Adventurer theAdventurer = new Adventurer(adventurename, discription);
+            Adventurer theAdventurer = new Adventurer(adventurename, discription, shiny);
 
             theAdventurer.GetDescription();
 
